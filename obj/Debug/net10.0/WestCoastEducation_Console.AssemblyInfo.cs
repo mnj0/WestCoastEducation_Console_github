@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WestCoastEducation_Console")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+75bb95b710696fc29cae78ae3842eee5116eafc4")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4daacc4c6aeb00cac55d7b082603f4ce3658a4d7")]
 [assembly: System.Reflection.AssemblyProductAttribute("WestCoastEducation_Console")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WestCoastEducation_Console")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

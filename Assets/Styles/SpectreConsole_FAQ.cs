@@ -6,21 +6,87 @@ namespace WestCoastEducation;
 
 public class SpectreConsole_FAQ : TypeWriterMethods
 {
-        private static void TabularDataExamples()
+        public static void UpdateContentLiveExamples()
+        {
+                var table = new Table().AddColumn("Metric").AddColumn("Value");
+                AnsiConsole.Live(table)
+                .Start(ctx =>
+                {
+                for (int i = 1; i <= 5; i++)
+                {
+                        table.AddRow($"Item {i}", $"{i * 10}%");
+                        ctx.Refresh();
+                        Thread.Sleep(500);
+                }
+                });
+
+                AnsiConsole.Live(new Panel("Starting..."))
+                .Start(ctx =>
+                {
+                Thread.Sleep(1000);
+                ctx.UpdateTarget(new Panel("[yellow]Processing...[/]"));
+                Thread.Sleep(1000);
+                ctx.UpdateTarget(new Panel("[green]Complete![/]"));
+                Thread.Sleep(500);
+                });
+                var table2 = new Table().AddColumn("Status");
+        
+                AnsiConsole.Live(table2)
+                .AutoClear(true)
+                .Start(ctx =>
+                {
+                        table2.AddRow("Working...");
+                        ctx.Refresh();
+                        Thread.Sleep(2000);
+                });
+                
+                AnsiConsole.MarkupLine("[green]Done![/]");                
+                smedelande("Starting...");
+                TestLive().GetAwaiter().GetResult();
+                smedelande("Finished!");
+        }
+        public static void TabularDataExamples()
         {
                 var table = new Table();
   
                 table.AddColumn("Name");
                 table.AddColumn("Department");
-                table.AddColumn("Sales");
-                
+                table.AddColumn("Sales");                        
                 table.AddRow("Alice", "North", "$12,400");
                 table.AddRow("Bob", "South", "$8,750");
                 table.AddRow("Carol", "West", "$15,200");
                 
                 AnsiConsole.Write(table);
+
+                var table2 = new Table()
+                .RoundedBorder()
+                .BorderColor(Color.Grey);
+                
+                table2.AddColumn("Name");
+                table2.AddColumn("Department");
+                table2.AddColumn("Sales");
+                
+                table2.AddRow("Alice", "North", "$12,400");
+                table2.AddRow("Bob", "South", "$8,750");
+                table2.AddRow("Carol", "West", "$15,200");
+                
+                swritetabell(table2);
+
+                var table3 = new Table()
+                .RoundedBorder()
+                .BorderColor(Color.Grey);
+                
+                table3.AddColumn("Name");
+                table3.AddColumn("Department", col => col.Centered());
+                table3.AddColumn("Sales", col => col.RightAligned());
+                
+                table3.AddRow("Alice", "North", "$12,400");
+                table3.AddRow("Bob", "South", "$8,750");
+                table3.AddRow("Carol", "West", "$15,200");
+                
+                AnsiConsole.Write(table3);
         }
-        private static void MarkupExamples()
+        public static void MarkupExamples()
         {
                 var namn = sfråga<string>("Vad Heter du?");
                 smarkupmedelande($"Okej tack {namn}");
@@ -34,7 +100,7 @@ public class SpectreConsole_FAQ : TypeWriterMethods
                 smarkupmedelande("[conceal]conceal[/]       - Hidden text (for passwords)");
         }
 
-        private static void LayoutExamples()
+        public static void LayoutExamples()
         {
                 var panel = new Panel("Important message")
                 .Header("[yellow]Notice[/]")
@@ -62,5 +128,19 @@ public class SpectreConsole_FAQ : TypeWriterMethods
                 
                 AnsiConsole.Write(Align.Center(panel2));
         }
-        
+        public static async Task TestLive()
+        {
+                var table = new Table().AddColumn("Task").AddColumn("Status");
+
+                await AnsiConsole.Live(table)
+                .StartAsync(async ctx =>
+                {
+                        table.AddRow("Fetching data", "[yellow]...[/]");
+                        ctx.Refresh();
+                        await Task.Delay(1000);
+
+                        table.Rows.Update(0, 1, new Markup("[green]Done[/]"));
+                        ctx.Refresh();
+                });
+        }
 }
