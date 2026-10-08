@@ -2,9 +2,28 @@
 
 namespace WestCoastEducation;
 
+//Använde Andras Kod för TypeWriter Stil som jag hitta online.
+
+//Min Kod fungerar utan TypeWriterMethods.cs filen men Spectre.Console och ''vanliga'' Console använder bara 
+//andra metoder som skriver ut output automatiskt.
+//Det är BARA visuellt.
+//Till exempel istället för Console.WriteLine("Hej"); blir till 
+// Hej
+
+// så blir ' medelande("Hej"); '
+// H
+// He
+// Hej
+
+// fast på samma rad såklart. Aka Som en typewriter. Den skriver ut en karaktär efter en istället för allt samtidigt.
+
+//Anledningen jag ville ha det som en typewriter var för det SER SÅÅÅ mycket mer snyggagre ut I consolen.
+
+
 public class TypeWriterMethods
 {
-    public static int Slowness = 20;
+    private static int Slowness = 20;
+    private static int TabellSpeed = 5;
     public static void medelande(string dintext)
     {
         for (int i = 0; i < dintext.Length; i++ )
@@ -50,7 +69,46 @@ public class TypeWriterMethods
         AnsiConsole.WriteLine();
         AnsiConsole.WriteLine();
     }  
+    public static void swritetabell(Table tabell)
+    {
+        var writer = new StringWriter();
+        var konsol = AnsiConsole.Create(new AnsiConsoleSettings
+        {
+            Ansi = AnsiSupport.Yes,
+            ColorSystem = ColorSystemSupport.TrueColor,
+            Out = new AnsiConsoleOutput(writer)
+        });
+        konsol.Profile.Width = AnsiConsole.Profile.Width;
+        konsol.Write(tabell);
 
+        string text = writer.ToString();
+
+        // 2. Skriv ut strängen ett tecken i taget
+        var ut = AnsiConsole.Profile.Out.Writer;
+        bool iEscape = false;
+
+        foreach (char c in text)
+        {
+            ut.Write(c);
+
+            if (c == '\u001b')
+            {
+                iEscape = true; 
+            }
+            else if (iEscape)
+            {
+                if (char.IsLetter(c)) iEscape = false; 
+            }
+            else if (c != '\n' && c != '\r')
+            {
+                ut.Flush();
+                Thread.Sleep(TabellSpeed);
+            }
+        }
+
+        ut.Flush();
+        Console.WriteLine();
+    }
     public static void smarkupmedelande(string dintext)
     {
         var stilar = new Stack<string>();
@@ -91,5 +149,10 @@ public class TypeWriterMethods
         }
 
         AnsiConsole.WriteLine();
+    }
+    public static Variabel sfråga<Variabel>(string fråga)
+    {
+        smarkupmedelande(fråga);
+        return AnsiConsole.Ask<Variabel>("[grey]>[/]");
     }
 }

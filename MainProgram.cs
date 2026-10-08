@@ -8,17 +8,49 @@ public class MainProgram : TypeWriterMethods
     {
         medelande("WestCoastEducation");
         smedelande("[bold blue]Welcome[/] to [green]Spectre.Console[/]!");
-        
-        AnsiConsole.MarkupLine("[Bold]Den Här texten är Bold och från AnsiConsole[/]");
 
-        smarkupmedelande("[bold]bold[/]          - bold /bright text");
-        smarkupmedelande("[dim]dim[/]           - Dimmed/faint text");
-        smarkupmedelande("[italic]italic[/]        - Italic text");
-        smarkupmedelande("[underline]underline[/]     - Underlined text");
-        smarkupmedelande("[strikethrough]strikethrough[/] - Strikethrough text");
-        smarkupmedelande("[invert]invert[/]        - Swap foreground/background");
-        smarkupmedelande("[conceal]conceal[/]       - Hidden text (for passwords)");
-        AnsiConsole.MarkupLine("[slowblink]slowblink[/]     - Slowly blinking text");
-        AnsiConsole.MarkupLine("[rapidblink]rapidblink[/]    - Rapidly blinking text");
+                var table = new Table();
+  
+                table.AddColumn("Name");
+                table.AddColumn("Department");
+                table.AddColumn("Sales");
+                
+                table.AddRow("Alice", "North", "$12,400");
+                table.AddRow("Bob", "South", "$8,750");
+                table.AddRow("Carol", "West", "$15,200");
+                
+                AnsiConsole.Write(table);
+
+        var table2 = new Table()
+            .RoundedBorder()
+            .BorderColor(Color.Grey);
+        
+        table2.AddColumn("Name");
+        table2.AddColumn("Department");
+        table2.AddColumn("Sales");
+        
+        table2.AddRow("Alice", "North", "$12,400");
+        table2.AddRow("Bob", "South", "$8,750");
+        table2.AddRow("Carol", "West", "$15,200");
+        
+        swritetabell(table2);
+
+        var table3 = new Table()
+            .RoundedBorder()
+            .BorderColor(Color.Grey);
+        
+        table3.AddColumn("Name");
+        table3.AddColumn("Department", col => col.Centered());
+        table3.AddColumn("Sales", col => col.RightAligned());
+        
+        table3.AddRow("Alice", "North", "$12,400");
+        table3.AddRow("Bob", "South", "$8,750");
+        table3.AddRow("Carol", "West", "$15,200");
+        
+        AnsiConsole.Write(table3);   
+        var namn = sfråga<string>("Vad Heter du?");
+        smarkupmedelande($"Okej tack {namn}");
+
+        
     }
 }
