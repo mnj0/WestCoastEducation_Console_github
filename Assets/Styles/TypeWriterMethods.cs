@@ -24,6 +24,21 @@ public class TypeWriterMethods
 {
     private static int Slowness = 20;
     private static int TabellSpeed = 5;
+    public static string stitel_val(string titel, params string[] val)
+{
+    smarkupmedelande(titel);
+
+    for (int i = 0; i < val.Length; i++)
+        smarkupmedelande($"[grey]{i + 1}.[/] {Markup.Escape(val[i])}");
+
+    int nummer = AnsiConsole.Prompt(
+        new TextPrompt<int>("[grey]>[/]")
+            .Validate(n => n >= 1 && n <= val.Length
+                ? ValidationResult.Success()
+                : ValidationResult.Error($"[red]Välj ett nummer mellan 1 och {val.Length}[/]")));
+
+    return val[nummer - 1];
+}
     public static void medelande(string dintext)
     {
         for (int i = 0; i < dintext.Length; i++ )
