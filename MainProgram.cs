@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualBasic;
 using Spectre.Console;
+using WestCoastEducation.Assets.FAQ;
 
 namespace WestCoastEducation;
 
@@ -28,6 +29,7 @@ public class MainProgram : SpectreConsole_FAQ
                     break;
                 case "Profil":
                     smarkupmedelande("Du är inuti Profil");
+                    
                     break;
                 case "Avsluta":
                     Environment.Exit(0);

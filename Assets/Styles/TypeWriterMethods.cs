@@ -1,6 +1,6 @@
 ﻿using Spectre.Console;
 
-namespace WestCoastEducation;
+namespace WestCoastEducation.Assets.Styles;
 
 //Använde Andras Kod för TypeWriter Stil som jag hitta online.
 

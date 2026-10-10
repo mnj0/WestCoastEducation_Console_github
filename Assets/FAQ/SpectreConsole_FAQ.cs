@@ -1,8 +1,8 @@
 using System;
 using Spectre.Console;
-using WestCoastEducation;
+using WestCoastEducation.Assets.Styles;
 
-namespace WestCoastEducation;
+namespace WestCoastEducation.Assets.FAQ;
 
 public class SpectreConsole_FAQ : TypeWriterMethods
 {
