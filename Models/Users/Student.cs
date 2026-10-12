@@ -12,4 +12,6 @@ public record class Student
     public string? Adress {get; set;}
     public string? PostCode {get; set;}
     public string? City {get; set;}
+
+    public virtual void Add(Student student){}
 }

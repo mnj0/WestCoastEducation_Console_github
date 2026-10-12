@@ -1,6 +1,8 @@
 ﻿using Microsoft.VisualBasic;
 using Spectre.Console;
 using WestCoastEducation.Assets.FAQ;
+using WestCoastEducation.Models;
+using WestCoastEducation.Models.Users;
 
 namespace WestCoastEducation;
 
@@ -29,7 +31,48 @@ public class MainProgram : SpectreConsole_FAQ
                     break;
                 case "Profil":
                     smarkupmedelande("Du är inuti Profil");
-                    
+
+                    smarkupmedelande("Du är inte Inloggad välj vad du vill logga in som");
+
+                    var AnvändarensVal2 = AnsiConsole.Prompt(
+                    new SelectionPrompt<string>()
+                    .AddChoices("Student", "Lärare", "StudentHandledare", "Admin"));
+                    switch (AnvändarensVal2)
+                    {
+                        case "Student":
+                            smarkupmedelande("Okej för att regristrera ett konto måste du svara på några frågor");
+                            var förnamn = sfråga<String>("Vad är Ditt Förnamn?");
+                            var efternamn = sfråga<String>("Vad är Ditt Efternamn?");
+                            var mejl = sfråga<String>("Vad är din email?");
+                            var personnummer = sfråga<String>("Vad är ditt personnummer?");
+                            Student nyStudent = new()
+                            {
+                                FirstName = förnamn,
+                                LastName = efternamn,
+                                Email = mejl,
+                                SocialSecurityNumber = personnummer
+
+                            };
+                        break;
+                        case "Lärare":
+                            //Teacher nyTeacher = new()
+                            {
+                                
+                            };
+                        break;
+                        case "StudentHandledare":
+                            //EducationCoordinator nyEducationCordinator = new()
+                            {
+                                
+                            };
+                        break;
+                        case "Admin":
+                        //Admin nyAdmin = new()
+                        {
+                            
+                        };
+                        break;
+                    }
                     break;
                 case "Avsluta":
                     Environment.Exit(0);
