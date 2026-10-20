@@ -1,0 +1,22 @@
+[
+  {
+    "id": "c81936a9-6891-4b1a-adf8-d986862cf383",
+    "firstName": "förnamn",
+    "lastName": "efternamn",
+    "email": "mejl",
+    "socialSecurityNumber": "personnummer",
+    "adress": null,
+    "postCode": null,
+    "city": null
+  },
+  {
+    "id": "76c814a2-33b2-42e3-b959-0edd74f4db7e",
+    "firstName": "Minjo",
+    "lastName": "Trellar",
+    "email": "minemail@gmail.com",
+    "socialSecurityNumber": "99909090",
+    "adress": null,
+    "postCode": null,
+    "city": null
+  }
+]

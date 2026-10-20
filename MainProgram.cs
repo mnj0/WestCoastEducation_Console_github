@@ -3,6 +3,7 @@ using Spectre.Console;
 using WestCoastEducation.Assets.FAQ;
 using WestCoastEducation.Models;
 using WestCoastEducation.Models.Users;
+using WestCoastEducation.Models.Persistance;
 
 namespace WestCoastEducation;
 
@@ -32,7 +33,7 @@ public class MainProgram : SpectreConsole_FAQ
                 case "Profil":
                     smarkupmedelande("Du är inuti Profil");
 
-                    smarkupmedelande("Du är inte Inloggad välj vad du vill logga in som");
+                    smarkupmedelande("Välj vad du vill logga in som");
 
                     var AnvändarensVal2 = AnsiConsole.Prompt(
                     new SelectionPrompt<string>()
@@ -40,19 +41,44 @@ public class MainProgram : SpectreConsole_FAQ
                     switch (AnvändarensVal2)
                     {
                         case "Student":
-                            smarkupmedelande("Okej för att regristrera ett konto måste du svara på några frågor");
-                            var förnamn = sfråga<String>("Vad är Ditt Förnamn?");
-                            var efternamn = sfråga<String>("Vad är Ditt Efternamn?");
-                            var mejl = sfråga<String>("Vad är din email?");
-                            var personnummer = sfråga<String>("Vad är ditt personnummer?");
-                            Student nyStudent = new()
-                            {
-                                FirstName = förnamn,
-                                LastName = efternamn,
-                                Email = mejl,
-                                SocialSecurityNumber = personnummer
+                                string jsonfilepath = string.Concat(Environment.CurrentDirectory, "/Data/students.json");
 
-                            };
+                                List<Student> students = JsonReader<Student>.ReadFromJson(jsonfilepath);
+
+                                if (students.Count == 0)
+                                {
+                                    medelande("Inga konton finns. Skapa ett konto först.");
+                                    medelande("");
+                                    smarkupmedelande("Okej för att regristrera ett konto måste du svara på några frågor");
+                                    var förnamn = sfråga<String>("Vad är Ditt Förnamn?");
+                                    var efternamn = sfråga<String>("Vad är Ditt Efternamn?");
+                                    var mejl = sfråga<String>("Vad är din email?");
+                                    var personnummer = sfråga<String>("Vad är ditt personnummer?");
+                                    medelande($"här är dina svar: {förnamn}, {efternamn}, {mejl}, {personnummer}");
+                                    Student nyStudent = new()
+                                    {
+                                        FirstName = förnamn,
+                                        LastName = efternamn,
+                                        Email = mejl,
+                                        SocialSecurityNumber = personnummer
+
+                                    };
+                                    Student nyStudent2 = new()
+                                    {
+                                        FirstName = "förnamn",
+                                        LastName = "efternamn",
+                                        Email = "mejl",
+                                        SocialSecurityNumber = "personnummer"
+
+                                    };
+                                    nyStudent2.Add(nyStudent2);
+                                    nyStudent.Add(nyStudent);
+                                }
+                                else
+                                {
+                                    medelande("Du har redan registrerat ett konto.");
+                                }
+
                         break;
                         case "Lärare":
                             //Teacher nyTeacher = new()
