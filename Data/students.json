@@ -1,6 +1,6 @@
 [
   {
-    "id": "c81936a9-6891-4b1a-adf8-d986862cf383",
+    "id": "400e50f1-b439-4956-a14a-cf03d89d9d45",
     "firstName": "förnamn",
     "lastName": "efternamn",
     "email": "mejl",
@@ -10,11 +10,11 @@
     "city": null
   },
   {
-    "id": "76c814a2-33b2-42e3-b959-0edd74f4db7e",
+    "id": "10636136-3365-4b45-b187-caeaabcf4d12",
     "firstName": "Minjo",
     "lastName": "Trellar",
-    "email": "minemail@gmail.com",
-    "socialSecurityNumber": "99909090",
+    "email": "minjosemail@gmail.com",
+    "socialSecurityNumber": "secretpersonnummer 09309022312",
     "adress": null,
     "postCode": null,
     "city": null

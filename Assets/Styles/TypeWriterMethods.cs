@@ -168,6 +168,7 @@ public class TypeWriterMethods
     public static Variabel sfråga<Variabel>(string fråga)
     {
         smarkupmedelande(fråga);
+        medelande("");
         return AnsiConsole.Ask<Variabel>("[grey]>[/]");
     }
 }

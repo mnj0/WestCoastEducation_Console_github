@@ -47,8 +47,7 @@ public class MainProgram : SpectreConsole_FAQ
 
                                 if (students.Count == 0)
                                 {
-                                    medelande("Inga konton finns. Skapa ett konto först.");
-                                    medelande("");
+                                    smarkupmedelande("Inga konton finns. Skapa ett konto först.");
                                     smarkupmedelande("Okej för att regristrera ett konto måste du svara på några frågor");
                                     var förnamn = sfråga<String>("Vad är Ditt Förnamn?");
                                     var efternamn = sfråga<String>("Vad är Ditt Efternamn?");
@@ -63,15 +62,7 @@ public class MainProgram : SpectreConsole_FAQ
                                         SocialSecurityNumber = personnummer
 
                                     };
-                                    Student nyStudent2 = new()
-                                    {
-                                        FirstName = "förnamn",
-                                        LastName = "efternamn",
-                                        Email = "mejl",
-                                        SocialSecurityNumber = "personnummer"
-
-                                    };
-                                    nyStudent2.Add(nyStudent2);
+                                    
                                     nyStudent.Add(nyStudent);
                                 }
                                 else

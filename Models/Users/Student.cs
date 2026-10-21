@@ -1,11 +1,13 @@
 ﻿using System.Data.Common;
+using WestCoastEducation.Models.Interfaces;
 using WestCoastEducation.Models.Persistance;
 
 namespace WestCoastEducation.Models;
 
-public record class Student
+public record class Student : IUser
 {
-    public string id {get; set; } = Guid.NewGuid().ToString();
+
+    public string Id {get; set; } = Guid.NewGuid().ToString();
     public required string FirstName {get; set;}
     public required string LastName {get; set;}
     public required string Email {get; set;}
@@ -23,6 +25,6 @@ public record class Student
     }
     public override string ToString()
     {
-        return $"Id: {id} FörNamn: {FirstName} EfterNamn: {LastName} Email: {Email} PersonNummer {SocialSecurityNumber}";
+        return $"Id: {Id} FörNamn: {FirstName} EfterNamn: {LastName} Email: {Email} PersonNummer {SocialSecurityNumber}";
     }
 }

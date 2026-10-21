@@ -1,0 +1,96 @@
+using System;
+using Spectre.Console;
+using WestCoastEducation.Models.Interfaces;
+using WestCoastEducation.Models.Persistance;
+using static WestCoastEducation.Assets.Styles.TypeWriterMethods;
+
+namespace WestCoastEducation.Models.Methods;
+
+public static class EditUser
+{
+    public static void Edit<T>(string jsonfilepath) where T : class, IEducationCordinator
+    {
+        var users = JsonReader<T>.ReadFromJson(jsonfilepath);
+        
+        smedelande("Ange PersonNummer (yyyymmdd-xxxx) eller de 8 första tecknen av Id: ");
+        T? user = UserSearch.FindByIdOrSocialSecurityNumber(users, Console.ReadLine() ?? "");
+        
+        if (user == null)
+        {
+            smarkupmedelande("Ingen [red]användare[/] hittades.");
+        }
+        smarkupmedelande("Vad vill du redigera på denna Användaren?");
+        var AnvändarensVal = AnsiConsole.Prompt(
+        new SelectionPrompt<string>()
+            .Title($"{user.FirstName}, {user.LastName}, {user.Email}, {user.SocialSecurityNumber}, {user.Adress}, {user.PostCode}, {user.City}")
+            .AddChoices($"FirstName", $"LastName", $"Email", 
+            $"SocialSecurityNumber", $"Adress", 
+            $"PostCode", $"City"));
+        switch (AnvändarensVal)
+        {
+            case "FirstName:  ":
+
+                ChangeUserItem("Skriv in ett nytt FörNamn", user.FirstName, v => user.FirstName = v);
+                
+            break;
+            case "LastName":
+                ChangeUserItem("Skriv in ett nytt EfterNamn", user.LastName, v => user.LastName = v);
+            break;
+            case "Email":
+                ChangeUserItem("Skriv in en ny Email", user.Email, v => user.Email = v);
+            break;
+            case "SocialSecurityNumber":
+                ChangeUserItem("Skriv in ett nytt PersonNummer", user.SocialSecurityNumber, v => user.SocialSecurityNumber = v);
+            break;
+            case "Adress":
+                ChangeUserItem("Skriv in en ny Adress", user.Adress, v => user.Adress = v);
+            break;
+            case "PostCode":
+                ChangeUserItem("Skriv in en ny PostKod", user.PostCode, v => user.PostCode = v);
+            break;
+            case "City":
+                ChangeUserItem("Skriv in en ny Stad", user.City, v => user.City = v);
+            break;
+        }
+
+        JsonWriter<T>.WriteToJson(users, jsonfilepath);
+        smarkupmedelande("[green]Sparat.[/]");
+    }
+    
+    private static void ChangeUserItem(string label, string? current, Action<string> set)
+    {
+        try
+        {
+            while (true)
+            {
+                var nytt = sfråga<string>(label);
+ 
+                smarkupmedelande($"Är du säker på du vill ersätta {current} Med {nytt}");
+                string svar = sfråga<string>("svara med y/n eller yes/no").ToLower();
+ 
+                if (string.IsNullOrWhiteSpace(svar))
+                {
+                    smarkupmedelande("Du skrev inte in något eller så va det tomt i ditt svar");
+                }
+                else if (svar is "y" or "yes")
+                {
+                    set(nytt);
+                    return;
+                }
+                else if (svar is "n" or "no")
+                {
+                    return;
+                }
+                else
+                {
+                    smarkupmedelande("Nånting gick fel när du svara y/n, Försök Igen");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.Message);
+        }
+    }
+
+}

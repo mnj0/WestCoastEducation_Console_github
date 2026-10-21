@@ -4,6 +4,7 @@ using WestCoastEducation.Assets.Styles;
 
 namespace WestCoastEducation.Assets.FAQ;
 
+//det här är bara exempel på hur ConsoleSpectre Kan see ut.
 public class SpectreConsole_FAQ : TypeWriterMethods
 {
         public static void UpdateContentLiveExamples()
