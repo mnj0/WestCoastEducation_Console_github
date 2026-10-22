@@ -1,0 +1,13 @@
+[
+  {
+    "id": "e8cd7d68-4918-41a0-807e-0bdeafe83aa3",
+    "firstName": "Loona",
+    "lastName": "Jane",
+    "email": "jane@gmail.com",
+    "socialSecurityNumber": "20000110-0110",
+    "passWord": "moon",
+    "adress": null,
+    "postCode": null,
+    "city": null
+  }
+]

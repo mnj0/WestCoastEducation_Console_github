@@ -23,9 +23,9 @@ public static class EditUser
         smarkupmedelande("Vad vill du redigera på denna Användaren?");
         var AnvändarensVal = AnsiConsole.Prompt(
         new SelectionPrompt<string>()
-            .Title($"{user.FirstName}, {user.LastName}, {user.Email}, {user.SocialSecurityNumber}, {user.Adress}, {user.PostCode}, {user.City}")
+            .Title($"{user.FirstName}, {user.LastName}, {user.Email}, {user.SocialSecurityNumber}, {user.PassWord}, {user.Adress}, {user.PostCode}, {user.City}")
             .AddChoices($"FirstName", $"LastName", $"Email", 
-            $"SocialSecurityNumber", $"Adress", 
+            $"SocialSecurityNumber", "PassWord", $"Adress", 
             $"PostCode", $"City"));
         switch (AnvändarensVal)
         {
@@ -42,6 +42,9 @@ public static class EditUser
             break;
             case "SocialSecurityNumber":
                 ChangeUserItem("Skriv in ett nytt PersonNummer", user.SocialSecurityNumber, v => user.SocialSecurityNumber = v);
+            break;
+            case "PassWord":
+                ChangeUserItem("Skriv in ett nytt LösenOrd", user.PassWord, v => user.PassWord = v);
             break;
             case "Adress":
                 ChangeUserItem("Skriv in en ny Adress", user.Adress, v => user.Adress = v);

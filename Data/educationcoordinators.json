@@ -1,0 +1,13 @@
+[
+  {
+    "id": "db3c7930-eb34-4dc0-84e9-a7215ca35da7",
+    "firstName": "Håkan",
+    "lastName": "Brakan",
+    "email": "laden@gmail.com",
+    "socialSecurityNumber": "18080808-0808",
+    "passWord": "prutt",
+    "adress": null,
+    "postCode": null,
+    "city": null
+  }
+]

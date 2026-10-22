@@ -5,8 +5,20 @@
     "lastName": "FejkEfterNamn",
     "email": "superduperfejk@gmail.com",
     "socialSecurityNumber": "99993377-0000",
+    "passWord": null,
     "adress": "fejkadress",
     "postCode": "4141 41",
     "city": "OkändaStaden"
+  },
+  {
+    "id": "be506c77-8add-447f-8a43-372813680572",
+    "firstName": "Minjo",
+    "lastName": "T",
+    "email": "minjosmejl@iths.se",
+    "socialSecurityNumber": "ååååmmdd-xxxx",
+    "passWord": "Minjo Är bäst på att programera:))))))",
+    "adress": null,
+    "postCode": null,
+    "city": null
   }
 ]

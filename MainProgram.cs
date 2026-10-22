@@ -4,6 +4,7 @@ using WestCoastEducation.Assets.FAQ;
 using WestCoastEducation.Models;
 using WestCoastEducation.Models.Persistance;
 using WestCoastEducation.Models.Methods;
+using WestCoastEducation.Models.Users;
 
 namespace WestCoastEducation;
 public class MainProgram : SpectreConsole_FAQ
@@ -16,7 +17,7 @@ public class MainProgram : SpectreConsole_FAQ
             var AnvändarensVal = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 
-                .AddChoices("Hem", "Kurser", "Bokning", "Profil", "EditUsers", "Avsluta"));
+                .AddChoices("Hem", "Kurser", "Bokning", "AddUser", "EditUsers", "Avsluta"));
 
             switch (AnvändarensVal)
             {
@@ -30,17 +31,21 @@ public class MainProgram : SpectreConsole_FAQ
                 case "Bokning":
                     smarkupmedelande("Du är inuti Bokningar");
                     break;
-                case "Profil":
-                    smarkupmedelande("Du är inuti Profil");
+                case "AddUser":
+                    smarkupmedelande("Du är inuti AddUser");
 
-                    smarkupmedelande("Välj vad du vill logga in som");
+                    smarkupmedelande("Välj vad du vill lägga till");
 
                     var AnvändarensVal2 = AnsiConsole.Prompt(
                     new SelectionPrompt<string>()
-                    .AddChoices("Student", "Lärare", "StudentHandledare", "Admin"));
+                    .AddChoices("Student", "Lärare", "Handledare", "Admin"));
                     switch (AnvändarensVal2)
                     {
                         case "Student":
+
+                        AddUser.AddStudent();
+                        //AddUser.Add<Teacher>("student.json");
+                        /*
                                 string jsonfilepath = string.Concat(Environment.CurrentDirectory, "/Data/students.json");
 
                                 List<Student> students = JsonReader<Student>.ReadFromJson(jsonfilepath);
@@ -68,31 +73,50 @@ public class MainProgram : SpectreConsole_FAQ
                                 else
                                 {
                                     medelande("Du har redan registrerat ett konto.");
-                                }
+                                }*/
 
                         break;
                         case "Lärare":
                             //Teacher nyTeacher = new()
                             {
-                                
+                                AddUser.AddTeacher();
                             };
                         break;
-                        case "StudentHandledare":
+                        case "Handledare":
                             //EducationCoordinator nyEducationCordinator = new()
                             {
-                                
+                                AddUser.AddEducationCordinator();
                             };
                         break;
                         case "Admin":
                         //Admin nyAdmin = new()
                         {
-                            
+                            string jsonfilepath = string.Concat(Environment.CurrentDirectory, "/Data/admins.json");
+
+                            List<Admin> students = JsonReader<Admin>.ReadFromJson(jsonfilepath);
+                            Admin nyAdmin = new()
+                                    {
+                                        FirstName = "Björn",
+                                        LastName = "Bengtson",
+                                        Email = "bengabjörn@gmail.com",
+                                        SocialSecurityNumber = "19990120-8903",
+                                        PassWord = "DunderHonung",
+                                        FieldOfKnowledge = "Administriva Egenskaper",
+                                        StartOfEmployment = "2020-02-10",
+                                        EndOfEmployment = "Aldrig",
+                                        OverSeeingCourses = "Inga",
+                                        Courses = "Inga",
+
+                                    };
+                                    
+                                    nyAdmin.Add(nyAdmin, "admins.json");
                         };
                         break;
                     }
                     break;
                 case "EditUsers":
                     smarkupmedelande("Du är inuti EditUsers");
+                    smarkupmedelande("Vill påmmina att jag bara har lagt till funktionell kod för Student och inget annat");
                     string jsonfilepath2 = string.Concat(Environment.CurrentDirectory, "/Data/students.json");
                     //går att implementera så man kan få specifik typ av json fil men för enkelhetensSkulle nu (sent) så gör jag inte det
                     EditUser.Edit<Student>(jsonfilepath2);

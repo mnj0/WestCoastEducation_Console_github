@@ -6,7 +6,7 @@ public record class Course
     public required string Titel {get; set;}
 
     //Antal veckor i längd
-    public required string Length {get; set;}
+    public required string HowManyWeeks {get; set;}
     public required string StartDate {get; set;}
     public required string EndDate {get; set;}
     public required string Place {get; set;}

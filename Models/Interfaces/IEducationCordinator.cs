@@ -4,6 +4,6 @@ namespace WestCoastEducation.Models.Interfaces;
 
 public interface IEducationCordinator : ITeacher
 {
-    string StartOfEmployment {get; set;}
-    string EndOfEmployment {get; set;}
+    string OverSeeingCourses {get; set;}
+
 }

@@ -12,13 +12,14 @@ public record class Student : IUser
     public required string LastName {get; set;}
     public required string Email {get; set;}
     public required string SocialSecurityNumber {get; set;}
+    public string? PassWord {get; set;}
     public string? Adress {get; set;}
     public string? PostCode {get; set;}
     public string? City {get; set;}
 
-    public virtual void Add(Student student)
+    public virtual void Add(Student student, string jsonfile)
     {
-        string jsonfilepath = string.Concat(Environment.CurrentDirectory, "/Data/students.json");
+        string jsonfilepath = string.Concat(Environment.CurrentDirectory, $"/Data/{jsonfile}");
         var students = JsonReader<Student>.ReadFromJson(jsonfilepath);
         students.Add((Student)student);
         JsonWriter<Student>.WriteToJson(students, jsonfilepath);
