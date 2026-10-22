@@ -2,11 +2,10 @@
 using Spectre.Console;
 using WestCoastEducation.Assets.FAQ;
 using WestCoastEducation.Models;
-using WestCoastEducation.Models.Users;
 using WestCoastEducation.Models.Persistance;
+using WestCoastEducation.Models.Methods;
 
 namespace WestCoastEducation;
-
 public class MainProgram : SpectreConsole_FAQ
 {
     static void Main()
@@ -17,7 +16,7 @@ public class MainProgram : SpectreConsole_FAQ
             var AnvändarensVal = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 
-                .AddChoices("Hem", "Kurser", "Bokning", "Profil", "Avsluta"));
+                .AddChoices("Hem", "Kurser", "Bokning", "Profil", "EditUsers", "Avsluta"));
 
             switch (AnvändarensVal)
             {
@@ -26,6 +25,7 @@ public class MainProgram : SpectreConsole_FAQ
                     break;
                 case "Kurser":
                     smarkupmedelande("Du är inuti Kurser");
+
                     break;
                 case "Bokning":
                     smarkupmedelande("Du är inuti Bokningar");
@@ -52,7 +52,7 @@ public class MainProgram : SpectreConsole_FAQ
                                     var förnamn = sfråga<String>("Vad är Ditt Förnamn?");
                                     var efternamn = sfråga<String>("Vad är Ditt Efternamn?");
                                     var mejl = sfråga<String>("Vad är din email?");
-                                    var personnummer = sfråga<String>("Vad är ditt personnummer?");
+                                    var personnummer = sfråga<String>("Vad är ditt personnummer? (ååååmmdd-xxxx)");
                                     medelande($"här är dina svar: {förnamn}, {efternamn}, {mejl}, {personnummer}");
                                     Student nyStudent = new()
                                     {
@@ -90,6 +90,12 @@ public class MainProgram : SpectreConsole_FAQ
                         };
                         break;
                     }
+                    break;
+                case "EditUsers":
+                    smarkupmedelande("Du är inuti EditUsers");
+                    string jsonfilepath2 = string.Concat(Environment.CurrentDirectory, "/Data/students.json");
+                    //går att implementera så man kan få specifik typ av json fil men för enkelhetensSkulle nu (sent) så gör jag inte det
+                    EditUser.Edit<Student>(jsonfilepath2);
                     break;
                 case "Avsluta":
                     Environment.Exit(0);

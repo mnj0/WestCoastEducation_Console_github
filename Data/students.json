@@ -1,22 +1,12 @@
 [
   {
-    "id": "400e50f1-b439-4956-a14a-cf03d89d9d45",
-    "firstName": "förnamn",
-    "lastName": "efternamn",
-    "email": "mejl",
-    "socialSecurityNumber": "personnummer",
-    "adress": null,
-    "postCode": null,
-    "city": null
-  },
-  {
-    "id": "10636136-3365-4b45-b187-caeaabcf4d12",
-    "firstName": "Minjo",
-    "lastName": "Trellar",
-    "email": "minjosemail@gmail.com",
-    "socialSecurityNumber": "secretpersonnummer 09309022312",
-    "adress": null,
-    "postCode": null,
-    "city": null
+    "id": "0b7e325d-751c-4130-97c0-d22400158716",
+    "firstName": "FejkFörNamn",
+    "lastName": "FejkEfterNamn",
+    "email": "superduperfejk@gmail.com",
+    "socialSecurityNumber": "99993377-0000",
+    "adress": "fejkadress",
+    "postCode": "4141 41",
+    "city": "OkändaStaden"
   }
 ]

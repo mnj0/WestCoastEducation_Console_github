@@ -8,7 +8,7 @@ namespace WestCoastEducation.Models.Methods;
 
 public static class EditUser
 {
-    public static void Edit<T>(string jsonfilepath) where T : class, IEducationCordinator
+    public static void Edit<T>(string jsonfilepath) where T : class, IUser
     {
         var users = JsonReader<T>.ReadFromJson(jsonfilepath);
         
@@ -18,6 +18,7 @@ public static class EditUser
         if (user == null)
         {
             smarkupmedelande("Ingen [red]användare[/] hittades.");
+            return;
         }
         smarkupmedelande("Vad vill du redigera på denna Användaren?");
         var AnvändarensVal = AnsiConsole.Prompt(
@@ -28,7 +29,7 @@ public static class EditUser
             $"PostCode", $"City"));
         switch (AnvändarensVal)
         {
-            case "FirstName:  ":
+            case "FirstName":
 
                 ChangeUserItem("Skriv in ett nytt FörNamn", user.FirstName, v => user.FirstName = v);
                 
@@ -54,7 +55,7 @@ public static class EditUser
         }
 
         JsonWriter<T>.WriteToJson(users, jsonfilepath);
-        smarkupmedelande("[green]Sparat.[/]");
+        
     }
     
     private static void ChangeUserItem(string label, string? current, Action<string> set)
@@ -75,10 +76,12 @@ public static class EditUser
                 else if (svar is "y" or "yes")
                 {
                     set(nytt);
+                    smarkupmedelande("[green]Sparat.[/]");
                     return;
                 }
                 else if (svar is "n" or "no")
                 {
+                    smarkupmedelande("Ändringen [green strikethrough]Sparades[/] [Red]Ej![/]");
                     return;
                 }
                 else
