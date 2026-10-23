@@ -5,6 +5,8 @@ using WestCoastEducation.Models;
 using WestCoastEducation.Models.Persistance;
 using WestCoastEducation.Models.Methods;
 using WestCoastEducation.Models.Users;
+using WestCoastEducation.Models.Course;
+using WestCoastEducation_Console.Models.Methods;
 
 namespace WestCoastEducation;
 public class MainProgram : SpectreConsole_FAQ
@@ -12,26 +14,23 @@ public class MainProgram : SpectreConsole_FAQ
     static void Main()
     {
         while(true){
-
+            Console.WriteLine();
             smarkupmedelande("Välj ett av [DarkOliveGreen2]alternativen[/]");
             var AnvändarensVal = AnsiConsole.Prompt(
             new SelectionPrompt<string>()
                 
-                .AddChoices("Hem", "Kurser", "Bokning", "AddUser", "EditUsers", "Avsluta"));
+                .AddChoices("Hem", "Add Course", "Add User", "List Courses", "List Users" ,"Edit Users", "Edit Courses", "Avsluta"));
 
             switch (AnvändarensVal)
             {
                 case "Hem":
                     smarkupmedelande("Du är inuti Hem");
                     break;
-                case "Kurser":
+                case "Add Course":
                     smarkupmedelande("Du är inuti Kurser");
-
+                    AddCourses.AddCourse();
                     break;
-                case "Bokning":
-                    smarkupmedelande("Du är inuti Bokningar");
-                    break;
-                case "AddUser":
+                case "Add User":
                     smarkupmedelande("Du är inuti AddUser");
 
                     smarkupmedelande("Välj vad du vill lägga till");
@@ -95,26 +94,59 @@ public class MainProgram : SpectreConsole_FAQ
 
                             List<Admin> students = JsonReader<Admin>.ReadFromJson(jsonfilepath);
                             Admin nyAdmin = new()
-                                    {
-                                        FirstName = "Björn",
-                                        LastName = "Bengtson",
-                                        Email = "bengabjörn@gmail.com",
-                                        SocialSecurityNumber = "19990120-8903",
-                                        PassWord = "DunderHonung",
-                                        FieldOfKnowledge = "Administriva Egenskaper",
-                                        StartOfEmployment = "2020-02-10",
-                                        EndOfEmployment = "Aldrig",
-                                        OverSeeingCourses = "Inga",
-                                        Courses = "Inga",
+                            {
+                                AccesPass = "d7nd3rH0nun5",
+                                FirstName = "Björn",
+                                LastName = "Bengtson",
+                                Email = "bengabjörn@gmail.com",
+                                SocialSecurityNumber = "19990120-8903",
+                                PassWord = "DunderHonung",
+                                FieldOfKnowledge = "Administriva Egenskaper",
+                                StartOfEmployment = "2020-02-10",
+                                EndOfEmployment = "Aldrig",
+                                OverSeeingCourses = "Inga",
+                                Courses = "Inga"
 
-                                    };
-                                    
-                                    nyAdmin.Add(nyAdmin, "admins.json");
+                            };
+                            
+                            nyAdmin.AdminAdd(nyAdmin, "admins.json");
+                            medelande("");
                         };
                         break;
                     }
                     break;
-                case "EditUsers":
+                case "List Courses":
+                    smarkupmedelande("Du är inuti ListCourses");
+                    ListCourse.ShowCourseList<Course>("courses.json");
+                    break;
+                case "List Users":
+                    smarkupmedelande("Du är inuti ListUsers");
+                    smarkupmedelande("Välj vilken lista du vill se");
+                    string LCSvar = AnsiConsole.Prompt(
+                    new SelectionPrompt<string>()
+                    .AddChoices("Student", "Lärare", "Handledare", "Admin"));
+                    switch (LCSvar)
+                    {
+                        case "Student":
+                            ListUser.ShowStudentList<Student>("students.json");
+                        break;
+                        case "Lärare":
+                            ListUser.ShowTeacherList<Teacher>("teachers.json");
+                        break;
+                        case "Handledare":
+                            ListUser.ShowECList<EducationCoordinator>("educationcoordinators.json");
+                        break;
+                        case "Admin":
+                            ListUser.ShowAdminList<Admin>("admins.json");
+                        break;
+                    } 
+                break;  
+                case "Edit Courses":
+                    smarkupmedelande("Du är inuti Edit Courses");
+                    string jsonfilepath3 = string.Concat(Environment.CurrentDirectory, "/Data/courses.json");
+                    EditCourse.Edit<Course>(jsonfilepath3);
+                    break;  
+                case "Edit Users":
                     smarkupmedelande("Du är inuti EditUsers");
                     smarkupmedelande("Vill påmmina att jag bara har lagt till funktionell kod för Student och inget annat");
                     string jsonfilepath2 = string.Concat(Environment.CurrentDirectory, "/Data/students.json");

@@ -1,1 +1,10 @@
-[]
+[
+  {
+    "id": "f7afed70-359f-4269-9908-26ef3c8b426f",
+    "titel": "Cloud .Net Development",
+    "howManyWeeks": "48",
+    "startDate": "2026-12-24",
+    "endDate": "2027-09-25",
+    "typeOfCourse": "Hybrid"
+  }
+]

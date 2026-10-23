@@ -61,15 +61,15 @@ public static class EditUser
         
     }
     
-    private static void ChangeUserItem(string label, string? current, Action<string> set)
+    private static void ChangeUserItem(string ÄndraInfoTitel, string? NuvarandeInfo, Action<string> set)
     {
         try
         {
             while (true)
             {
-                var nytt = sfråga<string>(label);
+                var NyInfo = sfråga<string>(ÄndraInfoTitel);
  
-                smarkupmedelande($"Är du säker på du vill ersätta {current} Med {nytt}");
+                smarkupmedelande($"Är du säker på du vill ersätta {NuvarandeInfo} Med {NyInfo}");
                 string svar = sfråga<string>("svara med y/n eller yes/no").ToLower();
  
                 if (string.IsNullOrWhiteSpace(svar))
@@ -78,7 +78,7 @@ public static class EditUser
                 }
                 else if (svar is "y" or "yes")
                 {
-                    set(nytt);
+                    set(NyInfo);
                     smarkupmedelande("[green]Sparat.[/]");
                     return;
                 }

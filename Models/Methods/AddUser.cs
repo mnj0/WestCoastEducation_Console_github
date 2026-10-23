@@ -27,7 +27,7 @@ public record AddUser
 
         };
         
-        nyStudent.Add(nyStudent, "students.json");
+        nyStudent.StudentAdd(nyStudent, "students.json");
     }
     public static void AddTeacher()
     {
@@ -52,7 +52,7 @@ public record AddUser
 
         };
         
-        nyTeacher.Add(nyTeacher, "teachers.json");
+        nyTeacher.TeacherAdd(nyTeacher, "teachers.json");
     }
     public static void AddEducationCordinator()
     {
@@ -71,13 +71,13 @@ public record AddUser
             Email = mejl,
             SocialSecurityNumber = personnummer,
             PassWord = LösenOrd,
-            FieldOfKnowledge = "",
-            Courses = "",
+            FieldOfKnowledge = "/",
+            Courses = "/",
             OverSeeingCourses = översiktklasser,
 
         };
         
-        nyEducationCoordinator.Add(nyEducationCoordinator, "educationcoordinators.json");
+        nyEducationCoordinator.ECAdd(nyEducationCoordinator, "educationcoordinators.json");
     }
 
 

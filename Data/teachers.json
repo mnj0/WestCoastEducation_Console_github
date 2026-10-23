@@ -1,10 +1,14 @@
 [
   {
-    "id": "e8cd7d68-4918-41a0-807e-0bdeafe83aa3",
+    "fieldOfKnowledge": "Cyber Security",
+    "courses": "LE26 och SS27",
+    "startOfEmployment": null,
+    "endOfEmployment": null,
+    "id": "5d8bdcbb-7a2e-4da5-b5c8-c414b234ac8e",
     "firstName": "Loona",
-    "lastName": "Jane",
-    "email": "jane@gmail.com",
-    "socialSecurityNumber": "20000110-0110",
+    "lastName": "Lei",
+    "email": "loon@gmail.com",
+    "socialSecurityNumber": "20000101-0101",
     "passWord": "moon",
     "adress": null,
     "postCode": null,

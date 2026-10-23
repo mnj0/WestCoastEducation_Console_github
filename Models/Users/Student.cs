@@ -17,7 +17,7 @@ public record class Student : IUser
     public string? PostCode {get; set;}
     public string? City {get; set;}
 
-    public virtual void Add(Student student, string jsonfile)
+    public virtual void StudentAdd(Student student, string jsonfile)
     {
         string jsonfilepath = string.Concat(Environment.CurrentDirectory, $"/Data/{jsonfile}");
         var students = JsonReader<Student>.ReadFromJson(jsonfilepath);
@@ -26,6 +26,6 @@ public record class Student : IUser
     }
     public override string ToString()
     {
-        return $"Id: {Id} FörNamn: {FirstName} EfterNamn: {LastName} Email: {Email} PersonNummer {SocialSecurityNumber}";
+        return $"Id: {Id}\n FörNamn: {FirstName}\n EfterNamn: {LastName}\n Email: {Email}\n PersonNummer {SocialSecurityNumber}\n";
     }
 }

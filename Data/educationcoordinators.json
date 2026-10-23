@@ -1,11 +1,16 @@
 [
   {
-    "id": "db3c7930-eb34-4dc0-84e9-a7215ca35da7",
+    "overSeeingCourses": "KU26, LU26, LE26",
+    "fieldOfKnowledge": "/",
+    "courses": "/",
+    "startOfEmployment": null,
+    "endOfEmployment": null,
+    "id": "4bff987a-e994-4e50-b2c6-d47d028cd7f9",
     "firstName": "Håkan",
-    "lastName": "Brakan",
-    "email": "laden@gmail.com",
+    "lastName": "Bråkan",
+    "email": "hakanbrakan@gmail.com",
     "socialSecurityNumber": "18080808-0808",
-    "passWord": "prutt",
+    "passWord": "a",
     "adress": null,
     "postCode": null,
     "city": null

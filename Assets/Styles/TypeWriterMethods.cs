@@ -7,7 +7,8 @@ namespace WestCoastEducation.Assets.Styles;
 //Min Kod fungerar utan TypeWriterMethods.cs filen men Spectre.Console och ''vanliga'' Console använder bara 
 //andra metoder som skriver ut output automatiskt.
 //Det är BARA visuellt.
-//Till exempel istället för Console.WriteLine("Hej"); blir till 
+//Till exempel istället för Console.WriteLine("Hej"); 
+// blir: 
 // Hej
 
 // så blir ' medelande("Hej"); '
@@ -16,6 +17,7 @@ namespace WestCoastEducation.Assets.Styles;
 // Hej
 
 // fast på samma rad såklart. Aka Som en typewriter. Den skriver ut en karaktär efter en istället för allt samtidigt.
+//H => He => Hej        [det är på en rad]
 
 //Anledningen jag ville ha det som en typewriter var för det SER SÅÅÅ mycket mer snyggagre ut I consolen.
 
